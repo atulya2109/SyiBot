@@ -5,10 +5,6 @@ SYIBOT:
     ✔ Fetch data from spotify @done(20-06-03 01:04)
     ✘ Fetch youtube url's for sounds @cancelled(20-06-04 17:43)
     ✔ Implemented discord-player @done(20-06-04 17:43)
-    ☐ Unimplement discord-player and write our own
-        There are a few reasons why we should write our own implementation.
-          1. It uses youtube api instead of scraping youtube. That limits the number of songs that can be played by the player.
-          2. Using youtube api we can be easily rate limited
     ✘ FIX BUG: discord-player.play gets executed for the first two songs @cancelled(20-06-04 18:50)
 
   Reload Command:

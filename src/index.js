@@ -5,8 +5,8 @@ const {Player} = require('discord-player');
 
 const {prefix} = require('./config.json');
 const token = process.env.SYIBOT_API_KEY;
-const yt_token = process.env.YOUTUBE_API_KEY;
-const player = new Player(client,yt_token, { leaveOnEnd: true, leaveOnStop: true, leaveOnEmpty: true});
+
+const player = new Player(client);
 client.player = player;
 
 client.commands = new Discord.Collection();
