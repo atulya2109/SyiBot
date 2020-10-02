@@ -1,11 +1,4 @@
 SYIBOT:
-  
-  Spotify Command:
-
-    ✔ Fetch data from spotify @done(20-06-03 01:04)
-    ✘ Fetch youtube url's for sounds @cancelled(20-06-04 17:43)
-    ✔ Implemented discord-player @done(20-06-04 17:43)
-    ✘ FIX BUG: discord-player.play gets executed for the first two songs @cancelled(20-06-04 18:50)
 
   Reload Command:
 
@@ -13,15 +6,9 @@ SYIBOT:
 
   Music Commands:
 
-    ☐ Create a Queue for songs
     ☐ Create a pause command
-    ☐ Create a play command
+    ✔ Create a play command @done(20-10-02 13:16)
     ☐ Create a next command
     ☐ Create a leave command
-      
-    ✔ Add !play command @started(20-06-02 23:22) @done(20-06-03 01:02) @lasted(1h40m21s)
-
-      ✔ Install ytdl @done(20-06-02 23:22) 
-      ✔ Create stream and send to discord on user's voice channel @done(20-06-03 01:02)
       
   ☐ Add functionality to send command usage details on wrong command
