@@ -6,7 +6,6 @@ const { Player } = require('discord-player');
 const { prefix, colors, emotes } = require('./config.json');
 const token = process.env.SYIBOT_API_KEY;
 
-const player = new Player(client, { leaveOnEnd: true, leaveOnStop: true, leaveOnEmpty: true });
 const player = new Player(client);
 client.player = player;
 client.colors = colors;
