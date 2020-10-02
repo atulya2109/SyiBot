@@ -1,4 +1,4 @@
-const Player = require('discord-player/src/Player');
+// const Player = require('discord-player/src/Player');
 const Discord = require('discord.js');
 module.exports = {
     name: 'pause',
