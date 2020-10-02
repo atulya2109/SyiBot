@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 module.exports = {
     name: 'resume',
     description: 'Resumes the stream',
@@ -5,8 +6,6 @@ module.exports = {
     usage: '<prefix>resume',
     guildOnly: true,
     execute(message, args) {
-
-        const client = message.client;
 
         const client = message.client;
         /**
@@ -20,7 +19,7 @@ module.exports = {
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id)
             return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} You are not in my voice channel!` } });
 
-        if (player.isPlaying(message.guild.id) || (player.getQueue(message.guild.id) && !player.getQueue(message.guild.id).paused))
+        if (player.getQueue(message.guild.id) && !player.getQueue(message.guild.id).paused)
             return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} Currently playing!` } });
 
         const songsEmbed = new Discord.MessageEmbed()
