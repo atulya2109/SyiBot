@@ -13,25 +13,30 @@ module.exports = {
      */
 
     execute(message, args) {
+
         if (args.length == 0) {
 
             const client = message.client;
+            /**
+             * @type {Player} 
+             */
+            const player = client.player;
 
             if (!message.member.voice.channel)
-                return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} | You must be in a voice channel!` } });
+                return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} You must be in a voice channel!` } });
 
             if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id)
-                return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} | You are not in my voice channel!` } });
+                return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} You are not in my voice channel!` } });
 
-            if (!client.player.isPlaying(message.guild.id))
-                return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} | There is nothing playing!` } });
+            if (!player.isPlaying(message.guild.id) || (player.getQueue(message.guild.id) && player.getQueue(message.guild.id).paused))
+                return message.channel.send({ embed: { color: client.colors.error, description: `${client.emotes.error} There is nothing playing!` } });
 
             const songsEmbed = new Discord.MessageEmbed()
                 .setColor('#39ff14');
 
             const guildId = message.guild.id;
-            client.player.pause(guildId).then((_) => {
-                return message.channel.send({ embed: { color: client.colors.success, description: `${client.emotes.success} | Song Paused` } })
+            player.pause(guildId).then((song) => {
+                return message.channel.send({ embed: { color: client.colors.success, description: `${client.emotes.success} Song Paused: [${song.name}](${song.url})` } })
             });
 
         }

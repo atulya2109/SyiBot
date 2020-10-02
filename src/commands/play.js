@@ -1,5 +1,5 @@
+const Player = require('discord-player/src/Player');
 const Discord = require('discord.js');
-const { playFromYoutube } = require('../helper.js');
 
 module.exports = {
     name: 'play',
@@ -9,8 +9,7 @@ module.exports = {
     guildOnly: true,
 
     /**
-     * 
-     * @param {*} message 
+     * @param {Discord.Message} message 
      * @param {string[]} args 
      */
     execute(message, args) {
@@ -21,8 +20,14 @@ module.exports = {
             const song = args.join(' ');
 
             const voiceChannel = message.member.voice.channel;
+
             const client = message.client;
             const guildid = message.guild.id;
+
+            /**
+             * @type {Player}
+             */
+            const player = client.player;
 
             const songsEmbed = new Discord.MessageEmbed()
                 .setColor('#39ff14')
@@ -31,14 +36,14 @@ module.exports = {
                 return message.reply('First join a voice channel!');
             }
 
-            let isQueueEmpty = !client.player.isPlaying(guildid);
+            let isQueueEmpty = !player.isPlaying(guildid);
 
             if (!isQueueEmpty) {
-                client.player.addToQueue(guildid, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Now playing [${song.name}](${song.url})`)); })
+                player.addToQueue(guildid, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Now playing [${song.name}](${song.url})`)); })
 
             }
             else {
-                client.player.play(voiceChannel, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Enqueued [${song.name}](${song.url})`)); });
+                player.play(voiceChannel, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Enqueued [${song.name}](${song.url})`)); });
 
             }
 
