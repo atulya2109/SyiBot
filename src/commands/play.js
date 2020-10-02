@@ -1,34 +1,48 @@
 const Discord = require('discord.js');
-const {playFromYoutube} = require('../helper.js');
+const { playFromYoutube } = require('../helper.js');
 
 module.exports = {
     name: 'play',
     description: 'Plays music from youtube',
     args: true,
-    usage: '<link>',  
+    usage: '<link>',
     guildOnly: true,
-    execute(message,args){
 
-        const voiceChannel = message.member.voice.channel;
-        const client = message.client;
-        const guildid = message.guild.id;
+    /**
+     * 
+     * @param {*} message 
+     * @param {string[]} args 
+     */
+    execute(message, args) {
 
-        const songsEmbed = new Discord.MessageEmbed()
-                	.setColor('#39ff14')       	
 
-        if(!voiceChannel){
-            return message.reply('First join a voice channel!');
+        if (args.length > 0) {
+
+            const song = args.join(' ');
+
+            const voiceChannel = message.member.voice.channel;
+            const client = message.client;
+            const guildid = message.guild.id;
+
+            const songsEmbed = new Discord.MessageEmbed()
+                .setColor('#39ff14')
+
+            if (!voiceChannel) {
+                return message.reply('First join a voice channel!');
+            }
+
+            let isQueueEmpty = !client.player.isPlaying(guildid);
+
+            if (!isQueueEmpty) {
+                client.player.addToQueue(guildid, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Now playing [${song.name}](${song.url})`)); })
+
+            }
+            else {
+                client.player.play(voiceChannel, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Enqueued [${song.name}](${song.url})`)); });
+
+            }
+
         }
-
-        let isQueueEmpty = !client.player.isPlaying(guildid);
-        
-        playFromYoutube(voiceChannel,args[0],guildid,client).then((song) => {
-
-            if(isQueueEmpty)
-                message.channel.send(songsEmbed.setDescription(`Now playing [${song.name}](${song.url})`));
-            else    
-                message.channel.send(songsEmbed.setDescription(`Enqueued [${song.name}](${song.url})`));
-        }).catch(console.error);
 
     },
 };
