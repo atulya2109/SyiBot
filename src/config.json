@@ -1,4 +1,20 @@
 {
-    "token" : "841ZNSd1LP8nyn1aessoOACfvOD1yo_b",
-    "prefix" : "!"
+  "token": "841ZNSd1LP8nyn1aessoOACfvOD1yo_b",
+  "prefix": "!",
+  "colors": {
+    "error": "0xFF0000",
+    "success": "0x00FF46",
+    "warning": "0xFFD100"
+  },
+  "emotes": {
+    "music": "🎶 ",
+    "queue": "🎞️",
+    "error": "❌",
+    "success": "☑️",
+    "warning": "⚠️",
+    "repeat": "🔁",
+    "pause": "⏸️",
+    "resume": "⏯️",
+    "stop": "⏹️"
+  }
 }
