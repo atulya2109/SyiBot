@@ -6,7 +6,8 @@ SYIBOT:
 
   Music Commands:
 
-    ☐ Create a pause command
+    ✔ Create a resume command @done(20-10-02 21:14)
+    ✔ Create a pause command @done(20-10-02 21:14)
     ✔ Create a play command @done(20-10-02 13:16)
     ☐ Create a next command
     ☐ Create a leave command
