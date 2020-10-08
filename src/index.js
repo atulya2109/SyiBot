@@ -12,13 +12,19 @@ client.colors = colors;
 client.emotes = emotes;
 
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
+const commandFolders = fs.readdirSync('./src/commands');
 
-for (const file of commandFiles) {
+console.log(commandFiles);
 
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-    console.info(`Command Set: ${command.name}`);
+for (const folder of commandFolders) {
+    var commandFiles = fs.readdirSync(`./src/commands/${folder}`).filter(file => file.endsWith('.js'));
+    for (const file of commandFiles) {
+
+        const command = require(`./commands/${folder}/${file}`);
+        command.folder = folder;
+        client.commands.set(command.name, command);
+        console.info(`${folder} Command Set: ${command.name}`);
+    }
 }
 
 client.on('ready', () => {
