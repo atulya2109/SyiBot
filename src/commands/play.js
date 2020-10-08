@@ -39,11 +39,11 @@ module.exports = {
             let isQueueEmpty = !player.isPlaying(guildid);
 
             if (!isQueueEmpty) {
-                player.addToQueue(guildid, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Now playing [${song.name}](${song.url})`)); })
+                player.addToQueue(guildid, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Enqueued [${song.name}](${song.url})`)); })
 
             }
             else {
-                player.play(voiceChannel, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Enqueued [${song.name}](${song.url})`)); });
+                player.play(voiceChannel, song).then((song) => { message.channel.send(songsEmbed.setDescription(`Now playing [${song.name}](${song.url})`)); });
 
             }
 
